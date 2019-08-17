@@ -1,0 +1,6 @@
+<ul>
+    <li *ngFor="let child of model.ChildNodes">
+        {{ child.Name }}
+        <app-docs-tree-node [model]="child"></app-docs-tree-node>
+    </li>
+</ul>

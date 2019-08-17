@@ -1,0 +1,25 @@
+.docs-tree {
+    display: flex;
+    flex-direction: column;
+    padding: 5rem;
+
+    &__panel {
+        display: flex;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid lightgray;
+
+        button {
+            margin-right: 1rem;
+        }
+    }
+
+    &__container {
+        display: flex;
+    }
+
+    &__nodes {
+        min-width: 40rem;
+        margin-right: 1rem;
+        border-right: 1px solid lightgray;
+    }
+}
