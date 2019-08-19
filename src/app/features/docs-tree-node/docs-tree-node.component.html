@@ -1,6 +1,19 @@
-<ul>
-    <li *ngFor="let child of model.ChildNodes">
-        {{ child.Name }}
-        <app-docs-tree-node [model]="child"></app-docs-tree-node>
-    </li>
-</ul>
+<!-- Display nodes recursively -->
+<div class="docs-tree-node">
+    <!-- <div class="docs-tree-node__icons"
+         *ngIf="nodeData.Name !== 'initialDocument'">
+        <span *ngIf="hasChildren"
+              class="docs-tree-node__caret">
+        </span>
+        <i [ngClass]="{'mdi mdi-folder': hasChildren}"></i>
+        <i [ngClass]="{'mdi mdi-file-document': !hasChildren}"></i>
+    </div> -->
+    <ul class="docs-tree-node__node">
+        <li *ngFor="let child of nodeData.ChildNodes"
+            (click)="nodeSelected($event, child)">
+            <span class="docs-tree-node__node-name">{{ child.Name }}</span>
+            <app-docs-tree-node [nodeData]="child"
+                                [hidden]="!showChildren"></app-docs-tree-node>
+        </li>
+    </ul>
+</div>
