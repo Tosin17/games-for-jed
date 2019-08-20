@@ -1,37 +1,42 @@
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { INode } from '../../models/docs';
-import { get } from 'lodash';
+import { Component } from '@angular/core';
+import { NestedTreeControl } from '@angular/cdk/tree';
+import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { DataService } from '../DataService';
+import { FoodNode } from '../models';
 
 @Component({
   selector: 'docs-tree',
   templateUrl: './docs-tree.component.html',
   styleUrls: ['./docs-tree.component.scss']
 })
-export class DocsTreeComponent implements OnInit, OnChanges {
-  @Input() nodeData: INode;
-  private hasChildren: boolean;
-  private showChildren: boolean;
 
-  constructor() { }
+export class DocsTreeComponent {
+  treeControl = new NestedTreeControl<FoodNode>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<FoodNode>();
+  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  private getChildren = (node: FoodNode) => node.children;
 
-  ngOnInit() {
-    // if (this.nodeData.ChildNodes.length) {
-    // }
+  constructor(private dataService: DataService) {
+    this.dataService.dataChange.subscribe(treeData => {
+      this.dataSource.data = treeData;
+      this.treeControl.dataNodes = treeData;
+    });
   }
 
-  ngOnChanges() {
-    this.hasChildren = !!get(this.nodeData, 'ChildNodes.length');
+  addChild(node) {
+    this.dataService.insertItem(node);
   }
 
-  trackByFn(index, node) {
-    return get(node, 'node.Name') || null;
+  removeChild(node) {
+    this.dataService.removeItem(node);
+    console.log(this.dataSource.data);
   }
 
-  nodeSelected(evt, node) {
-    evt.stopPropagation();
-    // console.log(node);
-    if (node.ChildNodes.length) {
-      this.showChildren = !this.showChildren;
-    }
+  expandAll() {
+    this.dataService.expandAll();
+  }
+
+  collapseAll() {
+    this.dataService.collapseAll();
   }
 }

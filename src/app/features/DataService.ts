@@ -1,12 +1,10 @@
-import { NestedTreeControl } from '@angular/cdk/tree';
-import { Component, Injectable } from '@angular/core';
-import { MatTreeNestedDataSource } from '@angular/material/tree';
+import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { BehaviorSubject } from 'rxjs';
 import { expandAll, collapseAll, TREE_DATA, removeDeep } from './models';
 
-@Injectable()
-export class DService {
+@Injectable({ providedIn: 'root' })
+export class DataService {
     dataChange = new BehaviorSubject([]);
 
     get data() { return this.dataChange.value; }
