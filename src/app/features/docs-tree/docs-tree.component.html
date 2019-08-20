@@ -1,15 +1,19 @@
+<!-- Display nodes recursively -->
 <div class="docs-tree">
-    <div class="docs-tree__panel">
-        <button>Add</button>
-        <button>Collapse</button>
-        <button>Expand</button>
-    </div>
-    <div class="docs-tree__container">
-        <div class="docs-tree__nodes">
-            <app-docs-tree-node [nodeData]="docs"></app-docs-tree-node>
-        </div>
-        <div class="docs-tree__node-detail">
-            <app-docs-tree-node-details></app-docs-tree-node-details>
-        </div>
-    </div>
+    <!-- <div class="docs-tree-node__icons"
+         *ngIf="nodeData.Name !== 'initialDocument'">
+        <span *ngIf="hasChildren"
+              class="docs-tree-node__caret">
+        </span>
+        <i [ngClass]="{'mdi mdi-folder': hasChildren}"></i>
+        <i [ngClass]="{'mdi mdi-file-document': !hasChildren}"></i>
+    </div> -->
+    <ul class="docs-tree__node">
+        <li *ngFor="let child of nodeData.ChildNodes"
+            (click)="nodeSelected($event, child)">
+            <span class="docs-tree-node-name">{{ child.Name }}</span>
+            <docs-tree [nodeData]="child"
+                       [hidden]="!showChildren"></docs-tree>
+        </li>
+    </ul>
 </div>

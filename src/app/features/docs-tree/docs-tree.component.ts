@@ -1,18 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { docs } from '../../models/docs';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { INode } from '../../models/docs';
+import { get } from 'lodash';
 
 @Component({
-  selector: 'app-docs-tree',
+  selector: 'docs-tree',
   templateUrl: './docs-tree.component.html',
   styleUrls: ['./docs-tree.component.scss']
 })
-export class DocsTreeComponent implements OnInit {
-  // Manage state for the tree
+export class DocsTreeComponent implements OnInit, OnChanges {
+  @Input() nodeData: INode;
+  private hasChildren: boolean;
+  private showChildren: boolean;
+
   constructor() { }
 
-  private docs = docs;
-
   ngOnInit() {
+    // if (this.nodeData.ChildNodes.length) {
+    // }
   }
 
+  ngOnChanges() {
+    this.hasChildren = !!get(this.nodeData, 'ChildNodes.length');
+  }
+
+  trackByFn(index, node) {
+    return get(node, 'node.Name') || null;
+  }
+
+  nodeSelected(evt, node) {
+    evt.stopPropagation();
+    // console.log(node);
+    if (node.ChildNodes.length) {
+      this.showChildren = !this.showChildren;
+    }
+  }
 }

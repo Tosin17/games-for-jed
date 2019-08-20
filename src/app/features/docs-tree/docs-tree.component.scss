@@ -1,25 +1,55 @@
 .docs-tree {
-    display: flex;
-    flex-direction: column;
-    padding: 5rem;
+    position: relative;
 
-    &__panel {
-        display: flex;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid lightgray;
+    &__node {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        padding-left: 0.5rem;
+    }
+    
+    li {
+        padding: 0.5rem;
+        cursor: pointer;
+        list-style-type: none;
+    }
 
-        button {
-            margin-right: 1rem;
+    &__node-name {
+        display: block;
+        height: 100%;
+    }
+
+    &__node-name:hover {
+        background: rgb(247, 247, 247);
+    }
+
+    &__icons {
+        position: absolute;
+        top: -2rem;
+        left: -3rem;
+        color: gray;
+
+        .mdi-file-document {
+            position: relative;
+            right: -1rem;
         }
     }
 
-    &__container {
-        display: flex;
+    &__caret {
+        cursor: pointer;
+        user-select: none;
     }
 
-    &__nodes {
-        min-width: 40rem;
-        margin-right: 1rem;
-        border-right: 1px solid lightgray;
+    &__caret::before {
+        content: "\25B6";
+        display: inline-block;
+        position: relative;
+        top: -0.2rem;
+        margin-right: 0.3rem;
+        font-size: 1rem;
+    }
+
+    &__caret-down::before {
+        transform: rotate(90deg); 
     }
 }
