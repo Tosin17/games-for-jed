@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { cloneDeep } from 'lodash';
 import { BehaviorSubject } from 'rxjs';
-import { expandAll, collapseAll, TREE_DATA, removeDeep } from './models';
+import { expandAll, collapseAll, TREE_DATA, removeDeep } from './utils';
 
 @Injectable({ providedIn: 'root' })
 export class DataService {
