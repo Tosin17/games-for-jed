@@ -13,7 +13,7 @@ import { FoodNode } from '../utils';
 export class DocsTreeComponent {
   treeControl = new NestedTreeControl<FoodNode>(node => node.children);
   dataSource = new MatTreeNestedDataSource<FoodNode>();
-  hasChild = (_: number, node: FoodNode) => !!node.children && node.children.length > 0;
+  hasChild = (_: number, node: FoodNode) => node.children && node.children.length > 0;
   private getChildren = (node: FoodNode) => node.children;
 
   constructor(private dataService: DataService) {
