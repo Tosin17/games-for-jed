@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NestedTreeControl } from '@angular/cdk/tree';
 import { MatTreeNestedDataSource } from '@angular/material/tree';
 import { DataService } from '../DataService';
-import { FoodNode } from '../models';
+import { FoodNode } from '../utils';
 
 @Component({
   selector: 'docs-tree',
