@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { fromEvent, interval, merge, empty } from 'rxjs';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { fromEvent, interval, merge, empty, combineLatest, Observable } from 'rxjs';
 import { mapTo, startWith, switchMap, scan, takeWhile } from 'rxjs/operators';
 
 @Component({
@@ -10,13 +10,17 @@ import { mapTo, startWith, switchMap, scan, takeWhile } from 'rxjs/operators';
 export class CountdownTimerComponent implements AfterViewInit {
   @ViewChild('pauseTimer', { static: false }) pauseTimer: ElementRef;
   @ViewChild('resumeTimer', { static: false }) resumeTimer: ElementRef;
+  @ViewChild('redBtn', { static: false }) redBtn: ElementRef;
+  @ViewChild('blueBtn', { static: false }) blueBtn: ElementRef;
   private readonly COUNT_INIT: number = 10;
   private remainingTime: number = this.COUNT_INIT;
+  blueCount = 0; redCount = 0; totalCount = 0;
 
   constructor() { }
 
   ngAfterViewInit() {
     this.setupTimer();
+    this.setupColorMixer();
   }
 
   setupTimer() {
@@ -36,7 +40,21 @@ export class CountdownTimerComponent implements AfterViewInit {
   }
 
   setupColorMixer() {
+    const increment = (obs: Observable<number>) => {
+      return obs.pipe(
+        mapTo(1),
+        scan((acc, curr) => acc + curr, 0),
+        startWith(0)
+      );
+    };
+    const redBtn = increment(fromEvent(this.redBtn.nativeElement, 'click'));
+    const blueBtn = increment(fromEvent(this.blueBtn.nativeElement, 'click'));
 
+    combineLatest(redBtn, blueBtn)
+      .subscribe(([redCount, blueCount]: any) => {
+        this.redCount = redCount;
+        this.blueCount = blueCount;
+        this.totalCount = blueCount + redCount;
+      });
   }
-
 }
