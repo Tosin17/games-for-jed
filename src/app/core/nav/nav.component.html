@@ -6,8 +6,11 @@
         </div>
         <ul class="nav navbar-nav">
             <li routerLinkActive="active"
-                routerLinkActiveOptions="{exact: true}">
+                [routerLinkActiveOptions]="{exact: true}">
                 <a [routerLink]="['/']">Dynamic Tree</a>
+            </li>
+            <li routerLinkActive="active">
+                <a [routerLink]="['/alphabet-invasion']">Alphabet Invasion</a>
             </li>
         </ul>
     </div>

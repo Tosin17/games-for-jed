@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { DocsViewComponent } from './features/docs-view/docs-view.component';
 import { DocsTreeComponent } from './features/docs-tree/docs-tree.component';
 import { DocsTreeNodeDetailsComponent } from './features/docs-tree-node-details/docs-tree-node-details.component';
+import { AlphabetInvasionComponent } from './core/alphabet-invasion/alphabet-invasion.component';
+import { CountdownTimerComponent } from './features/countdown-timer/countdown-timer.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { DocsTreeNodeDetailsComponent } from './features/docs-tree-node-details/
     DocsViewComponent,
     DocsTreeComponent,
     DocsTreeNodeDetailsComponent,
+    AlphabetInvasionComponent,
+    CountdownTimerComponent,
   ],
   imports: [
     BrowserModule,
