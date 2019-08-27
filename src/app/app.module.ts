@@ -14,6 +14,7 @@ import { DocsTreeComponent } from './features/docs-tree/docs-tree.component';
 import { DocsTreeNodeDetailsComponent } from './features/docs-tree-node-details/docs-tree-node-details.component';
 import { AlphabetInvasionComponent } from './core/alphabet-invasion/alphabet-invasion.component';
 import { CountdownTimerComponent } from './features/countdown-timer/countdown-timer.component';
+import { TrackUserEventsDirective } from './shared/directives/track-user-events.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CountdownTimerComponent } from './features/countdown-timer/countdown-ti
     DocsTreeNodeDetailsComponent,
     AlphabetInvasionComponent,
     CountdownTimerComponent,
+    TrackUserEventsDirective,
   ],
   imports: [
     BrowserModule,
