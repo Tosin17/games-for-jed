@@ -28,8 +28,8 @@ export class TrackUserEventsService {
       // Reset the timer anytime the user types, scrolls or uses mouse
       switchMap(() => interval$),
       // Calculate the count down by adding -1 + COUNT_IN_SECONDS everytime an evt occurs
-      // If `switchMap` restarts the counter, reset the accumulator
       scan((acc, curr: any) => {
+        // If `switchMap` restarts the counter, reset the accumulator
         if (curr.tick === 0) {
           acc = this.COUNT_IN_SECONDS;
         }
