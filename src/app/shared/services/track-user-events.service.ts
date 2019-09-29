@@ -32,6 +32,7 @@ export class TrackUserEventsService {
         // If `switchMap` restarts the counter, reset the accumulator
         if (curr.tick === 0) {
           acc = this.COUNT_IN_SECONDS;
+          return acc;
         }
         return acc + curr.val;
       }, this.COUNT_IN_SECONDS),
