@@ -16,6 +16,7 @@ export class TrackUserEventsService {
     const interval$ = interval(1000).pipe(map(tick => ({ tick, val: -1 })));
 
     // Events to track
+    onst onload$ = fromEvent(document, 'onload');
     const keyboard$ = fromEvent(document, 'keyup');
     const click$ = fromEvent(document, 'click');
     const mousemove$ = fromEvent(document, 'mousemove');
