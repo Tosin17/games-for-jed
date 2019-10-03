@@ -16,14 +16,14 @@ export class TrackUserEventsService {
     const interval$ = interval(1000).pipe(map(tick => ({ tick, val: -1 })));
 
     // Events to track
-    onst onload$ = fromEvent(document, 'onload');
+    const onload$ = fromEvent(document, 'onload');
     const keyboard$ = fromEvent(document, 'keyup');
     const click$ = fromEvent(document, 'click');
     const mousemove$ = fromEvent(document, 'mousemove');
     const scroll$ = fromEvent(document, 'scroll');
 
     // If any of this event occurs, emit the event
-    merge(keyboard$, click$, mousemove$, scroll$).pipe(
+    merge(onload$, keyboard$, click$, mousemove$, scroll$).pipe(
       // Start the count down
       startWith(interval$),
       // Reset the timer anytime the user types, scrolls or uses mouse
