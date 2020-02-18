@@ -7,7 +7,7 @@ import { switchMap, scan, takeWhile, tap, startWith, map } from 'rxjs/operators'
 })
 export class TrackUserEventsService {
   // Number of seconds user has to stay idle before he's logged out
-  private readonly COUNT_IN_SECONDS: number = 10;
+  private readonly COUNT_IN_SECONDS: number = 3600;
 
   constructor() { }
 

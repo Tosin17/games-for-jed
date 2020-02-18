@@ -13,7 +13,7 @@ export class CountdownTimerComponent implements AfterViewInit {
   @ViewChild('redBtn', { static: false }) redBtn: ElementRef;
   @ViewChild('blueBtn', { static: false }) blueBtn: ElementRef;
   private readonly COUNT_INIT: number = 10;
-  private remainingTime: number = this.COUNT_INIT;
+  remainingTime: number = this.COUNT_INIT;
   blueCount = 0; redCount = 0; totalCount = 0;
 
   constructor() { }

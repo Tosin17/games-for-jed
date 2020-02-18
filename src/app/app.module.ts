@@ -15,6 +15,9 @@ import { DocsTreeNodeDetailsComponent } from './features/docs-tree-node-details/
 import { AlphabetInvasionComponent } from './core/alphabet-invasion/alphabet-invasion.component';
 import { CountdownTimerComponent } from './features/countdown-timer/countdown-timer.component';
 import { TrackUserEventsDirective } from './shared/directives/track-user-events.directive';
+import { PracticeComponent } from './core/practice/practice.component';
+import { HighlightDirective } from './core/highlight.directive';
+import { CourseComponent } from './core/practice/course/course.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +29,9 @@ import { TrackUserEventsDirective } from './shared/directives/track-user-events.
     AlphabetInvasionComponent,
     CountdownTimerComponent,
     TrackUserEventsDirective,
+    PracticeComponent,
+    HighlightDirective,
+    CourseComponent,
   ],
   imports: [
     BrowserModule,
