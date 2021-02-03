@@ -17,8 +17,6 @@ const l = console.log;
 export class TrackUserEventsService {
   private readonly COUNT_IN_SECONDS: number = 30000;
 
-  constructor() {}
-
   initializeEventsTracker(): void {
     const interval$ = interval(1000).pipe(mapTo(1));
 
