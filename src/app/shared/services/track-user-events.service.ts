@@ -24,19 +24,22 @@ export class TrackUserEventsService {
     const click$ = fromEvent(document, 'click');
     const mousemove$ = fromEvent(document, 'mousemove');
 
-    merge(keyboard$, click$, mousemove$)
+     merge(keyboard$, click$, mousemove$)
       .pipe(
         startWith(interval$),
         switchMap(() => interval$.pipe(scan((acc, curr) => acc + curr))),
         takeWhile((tick) => tick <= this.COUNT_IN_SECONDS),
-        tap((tick) => {
-          if (tick === this.COUNT_IN_SECONDS - 10) {
-            l('Are you still there?'); // Open modal
-          } else if (tick === this.COUNT_IN_SECONDS) {
-            l('You have been logged out') // Log out
-          }
-        })
+        tap((tick) => this.openModalMaybe(tick))
       )
       .subscribe();
+  }
+  
+  openModalMaybe(tick): void {
+    if (tick === this.COUNT_IN_SECONDS - 10) {
+      l('Are you still there?'); // Open modal
+    } else if (tick === this.COUNT_IN_SECONDS) {
+      l('You have been logged out'); // Log out
+    }
+    l(tick);
   }
 }
