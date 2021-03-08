@@ -3,9 +3,9 @@ import {
   fromEvent,
   interval,
   merge,
-  empty,
   combineLatest,
   Observable,
+  EMPTY,
 } from "rxjs";
 import { mapTo, startWith, switchMap, scan, takeWhile } from "rxjs/operators";
 import { GoogleAnalyticsEventsService } from "src/app/shared/services/ga-events.service";
@@ -49,7 +49,7 @@ export class CountdownTimerComponent implements AfterViewInit {
     merge(pause$, resume$)
       .pipe(
         startWith(true),
-        switchMap((val) => (val ? interval$ : empty())), // tslint:disable-line
+        switchMap((val) => (val ? interval$ : EMPTY)),
         scan((acc, curr) => acc + curr, this.COUNT_INIT),
         takeWhile((val) => val >= 0)
       )
