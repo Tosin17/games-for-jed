@@ -7,7 +7,14 @@ import {
   Observable,
   EMPTY,
 } from "rxjs";
-import { mapTo, startWith, switchMap, scan, takeWhile } from "rxjs/operators";
+import {
+  mapTo,
+  startWith,
+  switchMap,
+  scan,
+  takeWhile,
+  tap,
+} from "rxjs/operators";
 import { GoogleAnalyticsEventsService } from "src/app/shared/services/ga-events.service";
 
 @Component({
@@ -20,8 +27,8 @@ export class CountdownTimerComponent implements AfterViewInit {
   @ViewChild("resumeTimer", { static: false }) resumeTimer: ElementRef;
   @ViewChild("redBtn", { static: false }) redBtn: ElementRef;
   @ViewChild("blueBtn", { static: false }) blueBtn: ElementRef;
-  private readonly COUNT_INIT: number = 10;
-  remainingTime: number = this.COUNT_INIT;
+  readonly COUNT_INIT: number = 10;
+  remainingTime;
   blueCount = 0;
   redCount = 0;
   totalCount = 0;
@@ -29,7 +36,7 @@ export class CountdownTimerComponent implements AfterViewInit {
   constructor(private gaService: GoogleAnalyticsEventsService) {}
 
   ngAfterViewInit() {
-    this.setupTimer();
+    this.remainingTime = this.setupTimer();
     this.setupColorMixer();
   }
 
@@ -46,16 +53,12 @@ export class CountdownTimerComponent implements AfterViewInit {
       mapTo(true)
     );
 
-    merge(pause$, resume$)
-      .pipe(
-        startWith(true),
-        switchMap((val) => (val ? interval$ : EMPTY)),
-        scan((acc, curr) => acc + curr, this.COUNT_INIT),
-        takeWhile((val) => val >= 0)
-      )
-      .subscribe((val) => {
-        this.remainingTime = val;
-      });
+    return merge(pause$, resume$).pipe(
+      startWith(true),
+      switchMap((v) => (v ? interval$ : EMPTY)),
+      scan((acc, val) => acc + val, this.COUNT_INIT),
+      takeWhile((v) => v >= 0)
+    );
   }
 
   setupColorMixer() {
