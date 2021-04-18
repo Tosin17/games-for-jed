@@ -1,3 +1,16 @@
 <div class="alphabet-invasion">
-    <p>alphabet-invasion works!</p>
+    <h3>Alphabet Invation</h3>
+
+    <section>
+        <div *ngIf="game$ | async as game">
+            <h4>Score: {{game.score}}</h4>
+            <div *ngFor="let ltr of game.letters">
+                <div class="pad-5"
+                     [ngStyle]="{marginLeft: ltr.xPos + 'px'}">{{ltr.letter}}</div>
+            </div>
+        </div>
+    </section>
+
+    <h4 class="game-over "
+        *ngIf="gameOverSub | async">GAME OVER!</h4>
 </div>

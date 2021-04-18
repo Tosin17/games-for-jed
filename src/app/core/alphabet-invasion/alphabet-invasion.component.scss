@@ -1,3 +1,20 @@
 .alphabet-invasion {
-    padding: 3rem;
+  padding: 3rem;
+}
+
+.pad-5 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  background-color: lightblue;
+  width: 20px;
+  height: 20px;
+  border-radius: 8px;
+  margin: 5px;
+}
+
+.game-over {
+  margin-top: 20px;
+  color: lightcoral;
 }
