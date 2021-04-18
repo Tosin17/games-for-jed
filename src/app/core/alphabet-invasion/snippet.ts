@@ -31,4 +31,4 @@ const letters$ = intervalSub.pipe(
 );
 
 intervalSub.next(600);
-letters$.subscribe(console.log);
+letters$.subscribe(log);
