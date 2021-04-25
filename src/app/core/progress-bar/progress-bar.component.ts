@@ -8,6 +8,7 @@ import {
   withLatestFrom,
   map,
   switchMapTo,
+  share,
 } from "rxjs/operators";
 
 @Component({
@@ -32,7 +33,8 @@ export class ProgressBarComponent {
   progress$ = this.streams$.pipe(
     scan((a) => a + 1, 0),
     withLatestFrom(this.count$, (acc, count) => acc / count),
-    map((v) => `${v * 100}%`)
+    map((v) => `${v * 100}%`),
+    share()
   );
 
   val$ = this.sub$.pipe(switchMapTo(this.progress$));

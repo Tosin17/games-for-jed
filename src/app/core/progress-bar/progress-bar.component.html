@@ -3,10 +3,9 @@
     <div class="progress-bar"
          [style.width]="val$ | async"></div>
 
-    <br>
-    PROGRESS: {{val$ | async}}
+    <br><br>
+    <div>PROGRESS: <b>{{val$ | async}}</b></div>
 
-    <br>
     <br>
     <button (click)="start()">RESTART</button>
 </div>
