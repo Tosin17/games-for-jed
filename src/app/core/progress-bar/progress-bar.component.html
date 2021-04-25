@@ -1,1 +1,12 @@
-<p>progress-bar works!</p>
+<!-- PROGRESS BAR -->
+<div class="wrapper">
+    <div class="progress-bar"
+         [style.width]="val$ | async"></div>
+
+    <br>
+    PROGRESS: {{val$ | async}}
+
+    <br>
+    <br>
+    <button (click)="start()">RESTART</button>
+</div>
