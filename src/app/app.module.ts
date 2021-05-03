@@ -24,6 +24,7 @@ import { TypeAheadComponent } from "./core/type-ahead/type-ahead.component";
 import { StopWatchComponent } from "./core/stop-watch/stop-watch.component";
 import { SwipeRefreshComponent } from "./core/swipe-refresh/swipe-refresh.component";
 import { LockScreenComponent } from "./core/lock-screen/lock-screen.component";
+import { ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { LockScreenComponent } from "./core/lock-screen/lock-screen.component";
     MatTreeModule,
     MatIconModule,
     MatButtonModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
