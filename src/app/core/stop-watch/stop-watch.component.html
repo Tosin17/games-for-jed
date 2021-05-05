@@ -1,43 +1,48 @@
-<div id="counter">0</div>
+<div id="counter">{{stopWatch?.value || 0}}</div>
 <div id="controls">
     <fieldset>
         <legend>Setup</legend>
-        <button type="button"
+        <button (click)="start()"
+                type="button"
                 id="start">start</button>
-        <button type="button"
+        <button (click)="pause()"
+                type="button"
                 id="pause">pause</button>
-        <button type="button"
+        <button (click)="reset()"
+                type="button"
                 id="reset">reset</button>
     </fieldset>
     <fieldset>
         <legend>Count</legend>
-        <button type="button"
+        <button (click)="countUp()"
+                type="button"
                 id="countup">count up</button>
-        <button type="button"
+        <button (click)="countDown()"
+                type="button"
                 id="countdown">count down</button>
     </fieldset>
     <fieldset>
         <legend>Set to</legend>
-        <input id="value"
-               value="0" />
+        <input [formControl]="setToCtrl"
+               id="value" />
         <br />
-        <button type="button"
-                id="setto">set value</button>
+        <!-- <button type="button"
+                    id="setto">set value</button> -->
     </fieldset>
     <fieldset>
         <legend>Speed</legend>
-        <input id="speed"
-               value="1000" />
+        <input [formControl]="speedCtrl"
+               id="speed" />
         <br />
-        <button type="button"
-                id="setspeed">set speed</button>
+        <!-- <button type="button"
+                    id="setspeed">set speed</button> -->
     </fieldset>
     <fieldset>
         <legend>Increase</legend>
-        <input id="increase"
-               value="1" />
+        <input [formControl]="increaseCtrl"
+               id="increase" />
         <br />
-        <button type="button"
-                id="setincrease">set increase</button>
+        <!-- <button type="button"
+                    id="setincrease">set increase</button> -->
     </fieldset>
 </div>
